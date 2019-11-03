@@ -1,17 +1,27 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
-<a class="backlink" href="/">Home</a>
-<h1>{{ post }}</h1>
-<p class="byline">
-  Posted by {{ post.author.username }} &mdash; {{ post.published_date }}
-</p>
-<div class="post-body">
-  {{ post.text }}
-</div>
-<ul class="categories">
-  {% for category in post.categories.all %}
-    <li>{{ category }}</li>
-  {% endfor %}
-</ul>
-{% endblock %}
+<html>
+  <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  </head>
+  <body>
+    <h1><a class="backlink" href="/">Home</a></h1>
+    <h1>{{ post }}</h1>    
+    <p class="byline">
+      Posted by {{ post.author.username }} &mdash; {{ post.published_date }}
+    </p>
+    <div class="post-body">
+      {{ post.text }}
+    </div>
+    <ul class="categories">
+      {% for category in post.categories.all %}
+        <li>{{ category }}</li>
+      {% endfor %}
+    </ul>
+    {% endblock %}
+  </body>
+</html>
