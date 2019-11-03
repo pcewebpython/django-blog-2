@@ -1,18 +1,16 @@
-import datetime
-
 from django.test import TestCase
-from django.utils.timezone import utc
 from django.contrib.auth.models import User
+from blogging.models import Post  # add this import at the top
+from blogging.models import Category
 
-from myblog.models import Post, Category
-
+import datetime
+from django.utils.timezone import utc
 
 class PostTestCase(TestCase):
-    fixtures = ['myblog_test_fixture.json', ]
+    fixtures = ['blogging_test_fixture.json', ]
 
     def setUp(self):
         self.user = User.objects.get(pk=1)
-
 
     def test_string_representation(self):
         expected = "This is a title"
@@ -20,9 +18,7 @@ class PostTestCase(TestCase):
         actual = str(p1)
         self.assertEqual(expected, actual)
 
-
 class CategoryTestCase(TestCase):
-
     def test_string_representation(self):
         expected = "A Category"
         c1 = Category(name=expected)
@@ -32,7 +28,7 @@ class CategoryTestCase(TestCase):
 
 class FrontEndTestCase(TestCase):
     """test views provided in the front-end"""
-    fixtures = ['myblog_test_fixture.json', ]
+    fixtures = ['blogging_test_fixture.json', ]
 
     def setUp(self):
         self.now = datetime.datetime.utcnow().replace(tzinfo=utc)
@@ -59,7 +55,6 @@ class FrontEndTestCase(TestCase):
                 self.assertContains(resp, title, count=1)
             else:
                 self.assertNotContains(resp, title)
-
 
     def test_details_only_published(self):
         for count in range(1, 11):

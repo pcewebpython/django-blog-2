@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
+{% load socialaccount %}
+{% providers_media_js %}
+
+
+
 {% block content %}
 <h1>My Blog Login</h1>
 <form action="" method="POST">{% csrf_token %}
   {{ form.as_p }}
   <p><input type="submit" value="Log In"></p>
 </form>
+
+<body>
+	<button><a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook Login</a></button>
+</body>
 {% endblock %}

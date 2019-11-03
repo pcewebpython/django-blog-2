@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{# mysite/templates/base.html #}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,15 +9,16 @@
   </head>
   <body>
     <div id="header">  {# header begins here #}
-      <ul id="control-bar">
-      {% if user.is_authenticated %}
+     <ul id="control-bar">
+	<li><a href="{% url 'post_new' %}">add post<a></li>
+     {% if user.is_authenticated %}
       {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">admin</a></li>{% endif %}
-        <li><a href="{% url 'logout' %}">logout</a></li>
-        {% else %}
-        <li><a href="{% url 'login' %}">login</a></li>
-      {% endif %}
-      </ul>
-     </div>              {# header ends here #}
+       <li><a href="{% url 'logout' %}">logout</a></li>
+      {% else %}
+       <li><a href="{% url 'login' %}">login</a></li>
+     {% endif %}
+     </ul>
+    </div>          
     <div id="container">
       <div id="content">
       {% block content %}
