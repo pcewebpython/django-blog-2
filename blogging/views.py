@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django import forms
+from django.utils import timezone
+from blogging.forms import PostForm
 
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 
@@ -41,3 +44,16 @@ def detail_view(request, post_id):
     return render(request, 'blogging/detail.html', context)
 
 # Create your views here.
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+
+            return redirect('/')
+    else:
+        form = PostForm()
+        return render(request, "blogging/post_edit.html", {'form': form})
