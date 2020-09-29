@@ -89,6 +89,8 @@ edit blogging/view.html			; per lesson, add list view
 edit blogging/templates/blogging/detail.html	; per lesson, detail html
 edit blogging/detail.html			; per lesson, add detail view
 edit blogging/templates/blogging/list.html	; per lesson, 4 tests run successfully
+edit mysite/templates/base.html			; per lesson, static files, css
+
 
 
 
