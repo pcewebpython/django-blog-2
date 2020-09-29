@@ -86,6 +86,10 @@ add this to misite/misite/urls.py	; path('', include('blogging.urls')),
 edit blogging/tests.py			; per lesson add test_list_only_published
 edit blogging/templates/blogging/list.html	; per lesson, list html
 edit blogging/view.html			; per lesson, add list view
+edit blogging/templates/blogging/detail.html	; per lesson, detail html
+edit blogging/detail.html			; per lesson, add detail view
+edit blogging/templates/blogging/list.html	; per lesson, 4 tests run successfully
+
 
 
 

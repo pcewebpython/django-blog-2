@@ -59,7 +59,6 @@ class FrontEndTestCase(TestCase):
             else:
                 self.assertNotContains(resp, title)
 
-    """
     def test_details_only_published(self):
         for count in range(1, 11):
             title = "Post %d Title" % count
@@ -70,4 +69,3 @@ class FrontEndTestCase(TestCase):
                 self.assertContains(resp, title)
             else:
                 self.assertEqual(resp.status_code, 404)
-    """
