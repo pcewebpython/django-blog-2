@@ -90,6 +90,14 @@ edit blogging/templates/blogging/detail.html	; per lesson, detail html
 edit blogging/detail.html			; per lesson, add detail view
 edit blogging/templates/blogging/list.html	; per lesson, 4 tests run successfully
 edit mysite/templates/base.html			; per lesson, static files, css
+edit mysite/templates/login.html		; per lesson, for login
+edit mysite/mysite/urls.py			; per lesson, for login, logout
+http://localhost:8000/admin		; test login page
+
+
+
+
+
 
 
 
