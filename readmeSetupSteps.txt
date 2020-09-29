@@ -80,8 +80,12 @@ edit tests.py				; test give a name to the displayed category
 python manage.py test blogging		; one test will fail
 edit blogging/models.py			; per lesson
 retest					; verify categories, and name appears
-
-
+edit blogging/views.py			; per lesson
+edit blogging/url.conf			; per lesson
+add this to misite/misite/urls.py	; path('', include('blogging.urls')),
+edit blogging/tests.py			; per lesson add test_list_only_published
+edit blogging/templates/blogging/list.html	; per lesson, list html
+edit blogging/view.html			; per lesson, add list view
 
 
 
