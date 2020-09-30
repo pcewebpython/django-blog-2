@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models  # <-- This is already in the file
 from django.contrib.auth.models import User
 
 class Post(models.Model):
@@ -12,13 +12,16 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+        
 class Category(models.Model):
+    pass
     name = models.CharField(max_length=128)
     description = models.TextField(blank=True)
     posts = models.ManyToManyField(Post, blank=True, related_name='categories')
 
-    class Meta:
-        verbose_name_plural = 'Categories'
-
     def __str__(self):
-        return self.name
+            return self.name
+
+    class Meta:
+        verbose_name_plural = 'Categories' 
+

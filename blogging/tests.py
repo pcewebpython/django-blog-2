@@ -20,7 +20,6 @@ class PostTestCase(TestCase):
         actual = str(p1)
         self.assertEqual(expected, actual)
 
-
 class CategoryTestCase(TestCase):
 
     def test_string_representation(self):

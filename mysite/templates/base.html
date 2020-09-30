@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'django_blog.css' %}">
   </head>
   <body>
-    <div id="header">  {# header begins here #}
+      <div id="header">  {# header begins here #}
       <ul id="control-bar">
       {% if user.is_authenticated %}
         {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">admin</a></li>{% endif %}
@@ -15,7 +15,7 @@
           <li><a href="{% url 'login' %}">login</a></li>
         {% endif %}
        </ul>
-     </div>              {# header ends here #}
+    </div>              {# header ends here #}
     <div id="container">
       <div id="content">
       {% block content %}
