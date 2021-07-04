@@ -2,15 +2,19 @@ from django.contrib import admin
 
 from blogging.models import Post, Category
 
-admin.site.register(Post)
-admin.site.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+
+    exclude = ('posts',)
+
+class CategoryInLine(admin.TabularInline):
+    model = Category.posts.through
 
 class PostAdmin(admin.ModelAdmin):
-    fields = (
-        'title', 'text', 'author', 'created_date', 'modified_date', 'published_date'
-    )
+    inlines = [CategoryInLine,]
+    
+    list_display = ('title', 'created_date',)
 
-class Category(admin.ModelAdmin):
-    fields = (
-        'name', 'description', 'posts'
-    )
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(Category, CategoryAdmin)
