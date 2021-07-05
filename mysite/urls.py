@@ -24,7 +24,8 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-    path('', include('blogging.urls')),    
+    path('', include('blogging.urls')),
+    path('', include(router.urls)),    
     path('polling/', include('polling.urls')),
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(template_name='login.html'), name="login"),

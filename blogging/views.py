@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
-from blogging.models import Post
+from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from tutorial.quickstart.serializers import UserSerializer, GroupSerializer
+from blogging.models import Post
+from blogging.serializers import UserSerializer, GroupSerializer
 
 def stub_view(request, *args, **kwargs):
     body = "Stub View\n\n"
