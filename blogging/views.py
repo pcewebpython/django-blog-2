@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from django.contrib.auth.models import User, Group
+from blogging import serializers
 from rest_framework import viewsets
 from rest_framework import permissions
 from blogging.models import Post
-from blogging.serializers import UserSerializer, GroupSerializer
+from blogging.serializers import PostSerializer, UserSerializer, GroupSerializer
 
 def stub_view(request, *args, **kwargs):
     body = "Stub View\n\n"
@@ -47,4 +48,12 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Post to be viewed or edited.
+    """
+    queryset = Post.objects.all()
+    serializers_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated]
