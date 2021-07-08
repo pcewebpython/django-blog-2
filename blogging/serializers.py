@@ -16,6 +16,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
-        fields = ['url', 'title']
+        fields = [
+            'url', 'title', 'text', 'author', 'created_date',
+            'modified_date','published_date',
+            ]
 
-    #def get_serializer_class(self):
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['url', 'name', 'description', 'posts']

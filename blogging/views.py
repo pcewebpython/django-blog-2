@@ -5,8 +5,8 @@ from django.contrib.auth.models import User, Group
 from blogging import serializers
 from rest_framework import viewsets
 from rest_framework import permissions
-from blogging.models import Post
-from blogging.serializers import PostSerializer, UserSerializer, GroupSerializer
+from blogging.models import Category, Post
+from blogging.serializers import CategorySerializer, PostSerializer, UserSerializer, GroupSerializer
 
 def stub_view(request, *args, **kwargs):
     body = "Stub View\n\n"
@@ -55,5 +55,13 @@ class PostViewSet(viewsets.ModelViewSet):
     API endpoint that allows Post to be viewed or edited.
     """
     queryset = Post.objects.all()
-    serializers_class = PostSerializer
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Categories to be viewed or edited.
+    """
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
