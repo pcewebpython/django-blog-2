@@ -7,6 +7,8 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from blogging.models import Category, Post
 from blogging.serializers import CategorySerializer, PostSerializer, UserSerializer, GroupSerializer
+from django.contrib.syndication.views import Feed
+from django.urls import reverse
 
 def stub_view(request, *args, **kwargs):
     body = "Stub View\n\n"
@@ -65,3 +67,23 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class LatestEntriesFeed(Feed):
+    title = 'Most Recent Posts'
+    link = '/sitenews/'
+    description = '5 Most Recent Posts to Site'
+
+    def items(self):
+        return Post.objects.order_by('-published_date')[:5]
+
+    def item_title(self, item):
+        return item.title
+
+    def item_author(self, item):
+        return item.author
+
+    def item_id(self, item):
+        return item.pk
+
+    def item_link(self, item):
+        return reverse('latest-feed', kwargs= {"id" : self.item_id})
