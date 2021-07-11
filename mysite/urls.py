@@ -33,5 +33,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html'), name="login"),
     path('logout/', LogoutView.as_view(next_page='/'), name="logout"),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('latest/feed/', views.LatestEntriesFeed(), name= 'latest-feed')
+    path('latest/feed/', views.LatestEntriesFeed(), name= 'latest-feed'),
+    path('accounts/', include('allauth.urls')),
 ]
