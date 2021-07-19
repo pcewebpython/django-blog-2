@@ -1,5 +1,11 @@
 from django.contrib import admin
-from blogging.models import Post, Category
+from .models import Post, Category
 
-admin.site.register(Post)
-admin.site.register(Category) 
+class PostAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'title':('text',)}
+
+class CatagoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'name':('description',)}
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(Category, CatagoryAdmin)
