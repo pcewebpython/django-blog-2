@@ -1,3 +1,6 @@
+# blogging/models.py
+
+from django.contrib import admin
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -15,7 +18,6 @@ class Post(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField(blank=True)
-    posts = models.ManyToManyField(Post, blank=True, related_name='categories')
 
     class Meta:
         verbose_name_plural = 'Categories'

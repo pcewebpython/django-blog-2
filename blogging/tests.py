@@ -1,12 +1,8 @@
 import datetime
-
+from django.utils.timezone import utc
 from django.test import TestCase
 from django.contrib.auth.models import User
-from django.utils.timezone import utc
-
-from blogging.models import Post
-from blogging.models import Category
-
+from blogging.models import Post, Category
 
 class PostTestCase(TestCase):
     fixtures = ['blogging_test_fixture.json', ]
@@ -20,7 +16,6 @@ class PostTestCase(TestCase):
         actual = str(p1)
         self.assertEqual(expected, actual)
 
-
 class CategoryTestCase(TestCase):
 
     def test_string_representation(self):
@@ -28,7 +23,6 @@ class CategoryTestCase(TestCase):
         c1 = Category(name=expected)
         actual = str(c1)
         self.assertEqual(expected, actual)
-
 
 class FrontEndTestCase(TestCase):
     """test views provided in the front-end"""

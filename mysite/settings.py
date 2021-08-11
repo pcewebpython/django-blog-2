@@ -1,3 +1,4 @@
+# mysite/settings.py
 """
 Django settings for mysite project.
 
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xak=ca*e6hvh8q5hgfz5l9ees)_pxjif0)ui!ikifg4!enjk+7'
+SECRET_KEY = '0@3oddlht7%xzs2$)izd7e(kod(-+esmnr!z(ia*7+f$u11j4-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,6 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polling',
     'blogging',
+
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +64,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'mysite/templates')],
+        'DIRS': [],#os.path.join(BASE_DIR, 'mysite/templates')],     # <- Make DIRS look like this
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,6 +109,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -120,6 +135,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/profile/'
